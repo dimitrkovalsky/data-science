@@ -28,10 +28,10 @@ public class LSTM {
     public static void main(String[] args) throws Exception {
         int lstmLayerSize = 200;                    //Number of units in each GravesLSTM layer
         int miniBatchSize = 32;                        //Size of mini batch to use when  training
-        int examplesPerEpoch = 50 * miniBatchSize;    //i.e., how many examples to learn on between generating samples
+        int examplesPerEpoch = 50 * miniBatchSize;    //i.e., how many examples to learn on between generating samples.txt
         int exampleLength = 100;                    //Length of each training example
         int numEpochs = 300;                            //Total number of training + sample generation epochs
-        int nSamplesToGenerate = 4;                    //Number of samples to generate after each training epoch
+        int nSamplesToGenerate = 4;                    //Number of samples.txt to generate after each training epoch
         int nCharactersToSample = 300;                //Length of each sample to generate
         String generationInitialization = null;        //Optional character initialization; a random character is used if null
         // Above is Used to 'prime' the LSTM with a character sequence to continue/complete.
@@ -81,7 +81,7 @@ public class LSTM {
         }
         System.out.println("Total number of network parameters: " + totalNumParams);
 
-        //Do training, and then generate and print samples from network
+        //Do training, and then generate and print samples.txt from network
         for (int i = 0; i < numEpochs; i++) {
             net.fit(iter);
 
@@ -140,9 +140,9 @@ public class LSTM {
     /**
      * Generate a sample from the network, given an (optional, possibly null) initialization. Initialization
      * can be used to 'prime' the RNN with a sequence you want to extend/continue.<br>
-     * Note that the initalization is used for all samples
+     * Note that the initalization is used for all samples.txt
      *
-     * @param initialization     String, may be null. If null, select a random character as initialization for all samples
+     * @param initialization     String, may be null. If null, select a random character as initialization for all samples.txt
      * @param charactersToSample Number of characters to sample from network (excluding initialization)
      * @param net                MultiLayerNetwork with one or more GravesLSTM/RNN layers and a softmax output layer
      * @param iter               CharacterIterator. Used for going from indexes back to characters
@@ -169,7 +169,7 @@ public class LSTM {
             sb[i] = new StringBuilder(initialization);
         }
 
-        //Sample from network (and feed samples back into input) one character at a time (for all samples)
+        //Sample from network (and feed samples.txt back into input) one character at a time (for all samples.txt)
         //Sampling is done in parallel here
         net.rnnClearPreviousState();
         INDArray output = net.rnnTimeStep(initializationInput);

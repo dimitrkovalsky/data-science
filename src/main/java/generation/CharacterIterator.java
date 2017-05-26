@@ -40,7 +40,7 @@ public class CharacterIterator implements DataSetIterator {
     }
 
     /**
-     * @param textFilePath         Path to text file to use for generating samples
+     * @param textFilePath         Path to text file to use for generating samples.txt
      * @param textFileEncoding     Encoding of the text file. Can try Charset.defaultCharset()
      * @param miniBatchSize        Number of examples per mini-batch
      * @param exampleLength        Number of characters in each input/output vector
@@ -124,6 +124,33 @@ public class CharacterIterator implements DataSetIterator {
         for (char c = 'A'; c <= 'Z'; c++) {
             validChars.add(c);
         }
+        addSpecialSymbols(validChars);
+        char[] out = new char[validChars.size()];
+        int i = 0;
+        for (Character c : validChars) {
+            out[i++] = c;
+        }
+        return out;
+    }
+
+    public static char[] getRussianCharacterSet() {
+        List<Character> validChars = new LinkedList<>();
+        for (char c = 'а'; c <= 'я'; c++) {
+            validChars.add(c);
+        }
+        for (char c = 'А'; c <= 'Я'; c++) {
+            validChars.add(c);
+        }
+        addSpecialSymbols(validChars);
+        char[] out = new char[validChars.size()];
+        int i = 0;
+        for (Character c : validChars) {
+            out[i++] = c;
+        }
+        return out;
+    }
+
+    private static void addSpecialSymbols(List<Character> validChars) {
         for (char c = '0'; c <= '9'; c++) {
             validChars.add(c);
         }
@@ -131,12 +158,6 @@ public class CharacterIterator implements DataSetIterator {
         for (char c : temp) {
             validChars.add(c);
         }
-        char[] out = new char[validChars.size()];
-        int i = 0;
-        for (Character c : validChars) {
-            out[i++] = c;
-        }
-        return out;
     }
 
     /**
