@@ -29,6 +29,8 @@ import java.util.Random;
 @Slf4j
 public class MarksGenerator {
 
+    public static final String SAMPLES_TXT = "samples.txt";
+    public static final String MODEL_FILE_PATH = "marksModel";
     private static int lstmLayerSize = 200;
     private static int miniBatchSize = 32;
     private static int examplesPerEpoch = 50 * miniBatchSize;
@@ -79,12 +81,12 @@ public class MarksGenerator {
     }
 
     private static void saveModel(MultiLayerNetwork model) throws IOException {
-        File modelFile = new File("marksModel");
+        File modelFile = new File(MODEL_FILE_PATH);
         ModelSerializer.writeModel(model, modelFile, true);
     }
 
     private static void saveToFile(int epoch, String[] samples) throws IOException {
-        File file = new File("samples.txt");
+        File file = new File(SAMPLES_TXT);
         List<String> list = new ArrayList<>();
         list.add("Completed epoch " + epoch);
         list.addAll(Arrays.asList(samples));
