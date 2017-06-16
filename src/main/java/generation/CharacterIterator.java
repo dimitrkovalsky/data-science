@@ -141,6 +141,12 @@ public class CharacterIterator implements DataSetIterator {
         for (char c = 'А'; c <= 'Я'; c++) {
             validChars.add(c);
         }
+        validChars.add('і');
+        validChars.add('І');
+        validChars.add('ї');
+        validChars.add('Ї');
+        validChars.add('є');
+        validChars.add('Є');
         addSpecialSymbols(validChars);
         char[] out = new char[validChars.size()];
         int i = 0;
