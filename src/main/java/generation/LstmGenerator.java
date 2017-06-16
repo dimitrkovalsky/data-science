@@ -34,18 +34,19 @@ public class LstmGenerator {
     private  int miniBatchSize = 32;
     private  int examplesPerEpoch = 50 * miniBatchSize;
     private  int exampleLength = 100;
-    private  int numEpochs = 20;
+    private  int epochs = 20;
     private  int nSamplesToGenerate = 4;
-    private  int nCharactersToSample = 300;
+    private  int nCharactersToSample = 400;
 
     private String trainFilePath;
     private String modelSavePath;
     private String logFilePath;
 
-    public LstmGenerator(String trainFilePath, String modelSavePath, String logFilePath) {
+    public LstmGenerator(String trainFilePath, String modelSavePath, String logFilePath, int epochs) {
         this.trainFilePath = trainFilePath;
         this.modelSavePath = modelSavePath;
         this.logFilePath = logFilePath;
+        this.epochs = epochs;
     }
 
     public void run() throws Exception {
@@ -57,7 +58,7 @@ public class LstmGenerator {
         File marksModel = new File(modelSavePath);
         model = initModel(iter, nOut, marksModel);
         calculateParameters(model);
-        for (int i = 0; i < numEpochs; i++) {
+        for (int i = 0; i < epochs; i++) {
             model.fit(iter);
             System.out.println("---------------------");
             System.out.println("Completed epoch " + i);

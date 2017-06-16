@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class FileConverter {
     public static void main(String[] args) throws IOException {
-        cleanRus();
+        cleanSheva();
 
     }
 
@@ -44,6 +44,25 @@ public class FileConverter {
         lines = lines.stream().filter(l -> !StringUtils.isEmpty(l.trim())).collect(Collectors.toList());
         int afterClean = lines.size();
         FileUtils.writeLines(new File("C:\\github\\data-science\\text\\kapital-clean.txt"), lines);
+        System.out.println("Before " + beforeClean + " after " + afterClean);
+    }
+
+    private static void cleanSheva() throws IOException {
+        List<String> lines = FileUtils.readLines(new File("E:\\github\\data-science\\text\\kobzar.txt"), StandardCharsets.UTF_8);
+
+        int beforeClean = lines.size();
+        lines = lines.stream()
+                .filter(l -> !StringUtils.isEmpty(l.trim()))
+                .filter(l -> !l.startsWith("*"))
+                .filter(l -> !l.startsWith("."))
+                .filter(l -> !l.startsWith("["))
+                .filter(l -> !l.endsWith("]"))
+                .filter(l -> !l.endsWith("___"))
+                .filter(l -> !l.endsWith("---"))
+                .filter(l -> !l.contains("18"))
+                .collect(Collectors.toList());
+        int afterClean = lines.size();
+        FileUtils.writeLines(new File("E:\\github\\data-science\\text\\kobzar-clean.txt"), lines);
         System.out.println("Before " + beforeClean + " after " + afterClean);
     }
 }
