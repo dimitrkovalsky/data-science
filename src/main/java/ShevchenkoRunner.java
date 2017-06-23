@@ -9,7 +9,7 @@ public class ShevchenkoRunner {
         LstmGenerator generator = new LstmGenerator(
             "E:\\github\\data-science\\text\\kobzar-clean.txt",
             "shevchenkoModel",
-            "shevchenko-samples.txt", 30);
+            "shevchenko-samples.txt", 3000);
         generator.run();
     }
 }
